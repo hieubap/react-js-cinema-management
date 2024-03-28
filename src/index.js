@@ -8,6 +8,7 @@ import UserLayout from "./layouts/UserLayout";
 import ManagerLayout from "./layouts/ManagerLayout";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import PageLayout from "./layouts/PageLayout";
+import "antd/dist/antd.css";
 import "./template/css/bootstrap.min.css";
 import "./template/css/elegant-icons.css";
 import "./template/css/font-awesome.min.css";
@@ -16,6 +17,7 @@ import "./template/css/owl.carousel.min.css";
 import "./template/css/plyr.css";
 import "./template/css/slicknav.min.css";
 import "./template/css/style.css";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
