@@ -1,3 +1,5 @@
+import { convertFileUrl } from "@/service/request";
+import moment from "moment";
 import React from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -7,30 +9,29 @@ function FilmItem({
   eye = 1902,
   current = 10,
   total = 18,
+  item,
 } = {}) {
   return (
     <div className="product__item">
       <div
         className="product__item__pic set-bg"
-        style={{ backgroundImage: "url(/img/popular/popular-1.jpg)" }}
+        style={{ backgroundImage: `url(${convertFileUrl(item.imageUrl)})` }}
       >
-        <div className="ep">
-          {current} / {total}
-        </div>
-        <div className="comment">
+        <div className="ep">{moment(item.createdAt).fromNow()}</div>
+        {/* <div className="comment">
           <i className="fa fa-comments" /> {comment}
         </div>
         <div className="view">
           <i className="fa fa-eye" /> {eye}
-        </div>
+        </div> */}
       </div>
       <div className="product__item__text">
-        <ul>
+        {/* <ul>
           <li>Active</li>
           <li>Movie</li>
-        </ul>
+        </ul> */}
         <h5>
-          <Link to="/page/film/1">{filmName}</Link>
+          <Link to={"/page/film/" + item._id}>{filmName}</Link>
         </h5>
       </div>
     </div>

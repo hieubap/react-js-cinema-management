@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FilmItem from "../../../components/FilmItem";
 import HeadGroup from "@/components/HeadGroup";
+import { requestFetch } from "@/service/request";
 
 function PageHome() {
+  const [state, _setState] = useState({
+    visible: false,
+    data: [],
+  });
+  const setState = (data) => {
+    _setState((pre) => ({ ...pre, ...data }));
+  };
+
+  const fetchData = () => {
+    requestFetch(
+      "get",
+      "/movie/film?sort=createdAt,desc&textSearch=",
+      // searchRef.current?.textSearch,
+      {}
+    ).then((res) => {
+      if (res.code == 200) {
+        setState({
+          data: res.data,
+        });
+      }
+    });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div>
       <section className="hero">
@@ -71,9 +99,9 @@ function PageHome() {
               <div className="trending__product">
                 <HeadGroup groupName="Trending now" />
                 <div className="row">
-                  {[1, 2, 3, 4, 5, 6].map((item) => (
+                  {state.data?.map((item) => (
                     <div className="col-lg-4 col-md-6 col-sm-6">
-                      <FilmItem />
+                      <FilmItem item={item} />
                     </div>
                   ))}
                 </div>

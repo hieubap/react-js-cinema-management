@@ -16,6 +16,7 @@ function SignIn() {
         message.error(res.message);
       } else {
         requestHeaders.authorization = "Bearer " + res.data.token;
+        localStorage.setItem("authCinema", JSON.stringify(res.data));
         history.replace("/manager");
         message.success("Đăng nhập thành công");
         // setSignin(true);
@@ -71,7 +72,6 @@ function SignIn() {
                     <span className="icon_lock" />
                   </div>
                   <button
-                    type="submit"
                     className="site-btn"
                     style={{ width: "100%" }}
                     onClick={onLogin}

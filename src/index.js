@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
@@ -17,19 +17,30 @@ import "./template/css/owl.carousel.min.css";
 import "./template/css/plyr.css";
 import "./template/css/slicknav.min.css";
 import "./template/css/style.css";
+import { requestHeaders } from "./service/request";
 
+const App = () => {
+  useEffect(() => {
+    let authData = localStorage.getItem("authCinema");
+    if (authData) {
+      authData = JSON.parse(authData);
+      requestHeaders.authorization = "Bearer " + authData.token;
+    }
+  }, []);
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path={`/page`} component={PageLayout} />
+        <Route path={`/user`} component={UserLayout} />
+        <Route path={`/manager`} component={ManagerLayout} />
+        <Redirect from="/" to="/page" />
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <BrowserRouter>
-    <Switch>
-      <Route path={`/page`} component={PageLayout} />
-      <Route path={`/user`} component={UserLayout} />
-      <Route path={`/manager`} component={ManagerLayout} />
-      <Redirect from="/" to="/page" />
-    </Switch>
-  </BrowserRouter>
-);
+root.render(<App />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -9,6 +9,7 @@ import {
   Row,
   Col,
   Popconfirm,
+  Image,
 } from "antd";
 import {
   EditOutlined,
@@ -16,7 +17,7 @@ import {
   PlusCircleOutlined,
 } from "@ant-design/icons";
 import FilmModal from "./FilmModal";
-import { requestFetch } from "@/service/request";
+import { convertFileUrl, requestFetch } from "@/service/request";
 import { formatPrice } from "@/utils/index";
 
 function ManagerFilm() {
@@ -32,6 +33,20 @@ function ManagerFilm() {
   };
   const columns = [
     { title: "STT", key: "stt", render: (_, __, idx) => idx + 1 },
+    {
+      title: "",
+      key: "picture",
+      dataIndex: "imageUrl",
+      render: (item) =>
+        item ? (
+          <Image
+            style={{ objectFit: "contain" }}
+            src={convertFileUrl(item)}
+            width={100}
+            height={100}
+          />
+        ) : null,
+    },
     { title: "Tên phim", key: "name", dataIndex: "nameFilm" },
     { title: "Mã", dataIndex: "codeFilm" },
     { title: "Thời lượng", dataIndex: "duration" },

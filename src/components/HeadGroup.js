@@ -9,11 +9,11 @@ function HeadGroup({ groupName = "Popular Shows" } = {}) {
         </div>
       </div>
       <div className="col-lg-4 col-md-4 col-sm-4">
-        <div className="btn__all">
+        {/* <div className="btn__all">
           <a href="#" className="primary-btn">
             View All <span className="arrow_right" />
           </a>
-        </div>
+        </div> */}
       </div>
     </div>
   );
