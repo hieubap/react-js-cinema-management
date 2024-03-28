@@ -1,20 +1,32 @@
 // import Table from "@/components/Table";
-import { requestFetch } from "@/service/request";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
-  DeleteOutlined,
+  Table,
+  Tooltip,
+  Button,
+  Card,
+  Input,
+  Row,
+  Col,
+  Popconfirm,
+} from "antd";
+import {
   EditOutlined,
+  DeleteOutlined,
   PlusCircleOutlined,
 } from "@ant-design/icons";
-import { Button, Card, Popconfirm, Table, Tooltip } from "antd";
+import TimetableModal from "./TimetableModal";
+import { requestFetch } from "@/service/request";
+import { formatPrice } from "@/utils/index";
 import moment from "moment";
-import React, { useEffect, useMemo, useRef, useState } from "react";
 
-function ManagerTicket() {
+function ManagerTimetable() {
   const [state, _setState] = useState({
     visible: false,
     data: [],
   });
   const searchRef = useRef({ textSearch: "" });
+  const timeRef = useRef();
 
   const setState = (data) => {
     _setState((pre) => ({ ...pre, ...data }));
@@ -22,20 +34,25 @@ function ManagerTicket() {
   const columns = [
     { title: "STT", width: 50, key: "stt", render: (_, __, idx) => idx + 1 },
     {
-      title: "Đặt lúc",
-      width: 150,
-      dataIndex: "createdAt",
-      render: (i) => moment(i).format("HH:mm DD/MM/YYYY"),
+      title: "Thời gian",
+      width: 120,
+      dataIndex: "startAt",
+      render: (item) => moment(item).format("HH:mm"),
     },
+    {
+      title: "Ngày",
+      width: 120,
+      dataIndex: "startAt",
+      render: (item) => moment(item).format("DD/MM/YYYY"),
+    },
+    { title: "Bộ phim", dataIndex: "film", render: (i) => i.nameFilm },
     {
       title: "Phòng",
       dataIndex: "room",
       render: (i) => i.nameRoom,
     },
-    { title: "Lịch chiếu", dataIndex: "film", render: (i) => i.nameFilm },
-    { title: "Phim", dataIndex: "film", render: (i) => i.nameFilm },
     {
-      title: "Số ghế",
+      title: "Số vé",
       dataIndex: "room",
       render: (_, item) => {
         const { row = 0, column = 0 } = item;
@@ -43,53 +60,60 @@ function ManagerTicket() {
       },
     },
     {
-      title: "Tổng tiền",
+      title: "Ghi chú",
       dataIndex: "content",
+    },
+    {
+      title: "Ngày tạo",
+      width: 150,
+      dataIndex: "createdAt",
+      render: (i) => moment(i).format("HH:mm DD/MM/YYYY"),
     },
     {
       title: "",
       width: 80,
-      render: (_, row) => (
-        <div className="group-btn-action">
-          <Tooltip title="Sửa">
-            <EditOutlined
-              onClick={() => {
-                // setState({
-                //   editData: row,
-                //   visible: true,
-                // });
+      render: (_, row) =>
+        row.status == 1 && (
+          <div className="group-btn-action">
+            <Tooltip title="Sửa">
+              <EditOutlined
+                onClick={() => {
+                  setState({
+                    editData: row,
+                    visible: true,
+                  });
+                }}
+                style={{ cursor: "pointer", fontSize: 20, color: "blue" }}
+              />
+            </Tooltip>
+            <Popconfirm
+              title="Bạn chắc chứ ?"
+              onConfirm={() => {}}
+              cancelText="Hủy lịch"
+              okText="Xóa"
+              okButtonProps={{
+                color: "secondary",
+                danger: true,
               }}
-              style={{ cursor: "pointer", fontSize: 20, color: "blue" }}
-            />
-          </Tooltip>
-          <Popconfirm
-            title="Bạn chắc chứ ?"
-            onConfirm={() => {}}
-            cancelText="Hủy lịch"
-            okText="Xóa"
-            okButtonProps={{
-              color: "secondary",
-              danger: true,
-            }}
-          >
-            <DeleteOutlined
-              style={{
-                cursor: "pointer",
-                fontSize: 20,
-                marginLeft: 10,
-                color: "red",
-              }}
-            />
-          </Popconfirm>
-        </div>
-      ),
+            >
+              <DeleteOutlined
+                style={{
+                  cursor: "pointer",
+                  fontSize: 20,
+                  marginLeft: 10,
+                  color: "red",
+                }}
+              />
+            </Popconfirm>
+          </div>
+        ),
     },
   ];
 
   const fetchData = () => {
     requestFetch(
       "get",
-      "/movie/ticket?sort=startAt,desc&textSearch=" +
+      "/movie/timetable?sort=startAt,desc&textSearch=" +
         searchRef.current?.textSearch,
       {}
     ).then((res) => {
@@ -190,8 +214,19 @@ function ManagerTicket() {
           pagination={{ defaultPageSize: 100 }}
         />
       </Card>
+
+      <TimetableModal
+        open={state.visible}
+        onCancel={() => {
+          setState({ visible: false });
+        }}
+        onRefresh={fetchData}
+        data={state.editData}
+        roomList={state.roomList}
+        filmList={state.filmList}
+      />
     </div>
   );
 }
 
-export default ManagerTicket;
+export default ManagerTimetable;

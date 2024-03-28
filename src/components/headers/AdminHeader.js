@@ -1,7 +1,11 @@
+import { managerRoutes } from "@/layouts/ManagerLayout";
 import React from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function AdminHeader() {
+  
+  const history = useHistory();
+  console.log(history, "history");
   return (
     <header className="header">
       <div className="container">
@@ -13,7 +17,23 @@ function AdminHeader() {
               </Link>
             </div>
           </div>
-          <div className="col-lg-8"></div>
+          <div className="col-lg-8">
+            <div className="header__nav">
+              <nav className="header__menu mobile-menu">
+                <ul>
+                  {managerRoutes.map((i) => (
+                    <li
+                      className={
+                        i.path == history.location.pathname ? "active" : ""
+                      }
+                    >
+                      <Link to={i.path}>{i.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </div>
           <div className="col-lg-2">
             <div className="header__right">
               <Link to="/" className="search-switch">

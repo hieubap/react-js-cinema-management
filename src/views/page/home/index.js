@@ -10,7 +10,7 @@ function PageHome() {
           <div className="hero__slider owl-carousel">
             <div
               className="hero__items set-bg"
-              data-setbg="/img/hero/hero-1.jpg"
+              style={{ backgroundImage: "url(/img/hero/hero-1.jpg)" }}
             >
               <div className="row">
                 <div className="col-lg-6">
@@ -96,7 +96,7 @@ function PageHome() {
                   <div className="filter__gallery">
                     <div
                       className="product__sidebar__view__item set-bg mix day years"
-                      data-setbg="/img/sidebar/tv-1.jpg"
+                      style={{ backgroundImage: "url(/img/sidebar/tv-1.jpg)" }}
                     >
                       <div className="ep">18 / ?</div>
                       <div className="view">
@@ -108,7 +108,7 @@ function PageHome() {
                     </div>
                     <div
                       className="product__sidebar__view__item set-bg mix month week"
-                      data-setbg="/img/sidebar/tv-2.jpg"
+                      style={{ backgroundImage: "url(/img/sidebar/tv-2.jpg)" }}
                     >
                       <div className="ep">18 / ?</div>
                       <div className="view">
@@ -120,7 +120,7 @@ function PageHome() {
                     </div>
                     <div
                       className="product__sidebar__view__item set-bg mix week years"
-                      data-setbg="/img/sidebar/tv-3.jpg"
+                      style={{ backgroundImage: "url(/img/sidebar/tv-3.jpg)" }}
                     >
                       <div className="ep">18 / ?</div>
                       <div className="view">
@@ -134,7 +134,7 @@ function PageHome() {
                     </div>
                     <div
                       className="product__sidebar__view__item set-bg mix years month"
-                      data-setbg="/img/sidebar/tv-4.jpg"
+                      style={{ backgroundImage: "url(/img/sidebar/tv-4.jpg)" }}
                     >
                       <div className="ep">18 / ?</div>
                       <div className="view">
@@ -148,7 +148,7 @@ function PageHome() {
                     </div>
                     <div
                       className="product__sidebar__view__item set-bg mix day"
-                      data-setbg="/img/sidebar/tv-5.jpg"
+                      style={{ backgroundImage: "url(/img/sidebar/tv-5.jpg)" }}
                     >
                       <div className="ep">18 / ?</div>
                       <div className="view">

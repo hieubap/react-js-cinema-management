@@ -1,6 +1,15 @@
 // import Table from "@/components/Table";
 import React, { useEffect, useRef, useState } from "react";
-import { Table, Tooltip, Button, Card, Input, Row, Col } from "antd";
+import {
+  Table,
+  Tooltip,
+  Button,
+  Card,
+  Input,
+  Row,
+  Col,
+  Popconfirm,
+} from "antd";
 import {
   EditOutlined,
   DeleteOutlined,
@@ -35,8 +44,9 @@ function ManagerFilm() {
     { title: "Số vé đá bán" },
     {
       title: "",
+      width: 80,
       render: (_, row) => (
-        <div>
+        <div className="group-btn-action">
           <Tooltip title="Sửa">
             <EditOutlined
               onClick={() => {
@@ -45,18 +55,28 @@ function ManagerFilm() {
                   visible: true,
                 });
               }}
-              width={18}
-              height={18}
-              color="primary"
-              style={{ cursor: "pointer", width: 18, height: 18 }}
+              style={{ cursor: "pointer", fontSize: 20, color: "blue" }}
             />
           </Tooltip>
-          <Tooltip title="Xóa">
+          <Popconfirm
+            title="Bạn chắc chứ ?"
+            onConfirm={() => {}}
+            cancelText="Hủy"
+            okText="Xóa"
+            okButtonProps={{
+              color: "secondary",
+              danger: true,
+            }}
+          >
             <DeleteOutlined
-              color="danger"
-              style={{ cursor: "pointer", marginLeft: 5 }}
+              style={{
+                cursor: "pointer",
+                fontSize: 20,
+                marginLeft: 10,
+                color: "red",
+              }}
             />
-          </Tooltip>
+          </Popconfirm>
         </div>
       ),
     },
@@ -82,17 +102,17 @@ function ManagerFilm() {
   }, []);
 
   const onCreate = () => {
-    setState({ visible: true });
+    setState({ visible: true, editData: null });
   };
 
   return (
-    <div style={{ padding: "10px 50px" }}>
+    <div style={{ padding: "10px 50px", background: "white" }}>
       <Card>
         <div
           className="row justify-content-between"
           style={{ marginBottom: 8 }}
         >
-          <h3>Danh sách phim</h3>
+          <h3>Danh sách</h3>
           <Button
             type="primary"
             onClick={onCreate}

@@ -2440,3 +2440,16 @@ ol {
   transform: translateY(2px);
   display: contents;
 }
+
+.film-coming,
+.film-coming:hover {
+  background-color: var(--green);
+}
+.film-showing,
+.film-showing:hover {
+  background-color: var(--orange);
+}
+.film-finish,
+.film-finish:hover {
+  background-color: var(--yellow);
+}

@@ -1,7 +1,28 @@
+import { requestFetch, requestHeaders } from "@/service/request";
 import React from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { message } from "antd";
 
 function SignIn() {
+  const loginDataRef = React.useRef({});
+  const history = useHistory();
+  const onLogin = () => {
+    requestFetch("post", "/user/sign-in", {
+      username: loginDataRef.current.username,
+      password: loginDataRef.current.password,
+    }).then((res) => {
+      console.log(res, "res");
+      if (res.code != 200) {
+        message.error(res.message);
+      } else {
+        requestHeaders.authorization = "Bearer " + res.data.token;
+        history.replace("/manager");
+        message.success("Đăng nhập thành công");
+        // setSignin(true);
+      }
+    });
+  };
+
   return (
     <div>
       <section
@@ -30,26 +51,39 @@ function SignIn() {
                 <h3>Login</h3>
                 <form action="#">
                   <div className="input__item">
-                    <input type="text" placeholder="Email address or username" />
+                    <input
+                      type="text"
+                      placeholder="Email address or username"
+                      onChange={(e) => {
+                        loginDataRef.current.username = e.target.value;
+                      }}
+                    />
                     <span className="icon_mail" />
                   </div>
                   <div className="input__item">
-                    <input type="text" placeholder="Password" />
+                    <input
+                      type="text"
+                      placeholder="Password"
+                      onChange={(e) => {
+                        loginDataRef.current.password = e.target.value;
+                      }}
+                    />
                     <span className="icon_lock" />
                   </div>
                   <button
                     type="submit"
                     className="site-btn"
-                    style={{ width: "50%" }}
+                    style={{ width: "100%" }}
+                    onClick={onLogin}
                   >
                     Login Now
                   </button>
                 </form>
-                <a href="#" className="forget_pass">
+                {/* <a href="#" className="forget_pass">
                   Forgot Your Password?
-                </a>
+                </a> */}
               </div>
-              <div
+              {/* <div
                 className="login__register"
                 style={{ marginTop: 60, display: "flex" }}
               >
@@ -67,7 +101,7 @@ function SignIn() {
                 >
                   Register Now
                 </Link>
-              </div>
+              </div> */}
             </div>
             {/* <div className="col-lg-12"></div> */}
           </div>

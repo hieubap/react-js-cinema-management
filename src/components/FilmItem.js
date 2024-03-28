@@ -12,7 +12,7 @@ function FilmItem({
     <div className="product__item">
       <div
         className="product__item__pic set-bg"
-        data-setbg="/img/popular/popular-1.jpg"
+        style={{ backgroundImage: "url(/img/popular/popular-1.jpg)" }}
       >
         <div className="ep">
           {current} / {total}

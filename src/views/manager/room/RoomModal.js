@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { Modal, Input, Form, TextArea } from "antd";
 import { requestFetch } from "@/service/request";
 
-function FilmModal({ data = {}, open, onCancel, onRefresh } = {}) {
+function RoomModal({ data, open, onCancel, onRefresh } = {}) {
   console.log(open, "open");
 
   const [form] = Form.useForm();
 
   const onSubmit = (values) => {
     console.log("submit...", values);
-    requestFetch(data?._id ? "put" : "post", "/movie/film", {
+    requestFetch(data?._id ? "put" : "post", "/movie/room", {
       _id: data?._id,
       ...values,
     }).then((res) => {
@@ -38,16 +38,19 @@ function FilmModal({ data = {}, open, onCancel, onRefresh } = {}) {
       }}
     >
       <Form layout="vertical" onFinish={onSubmit} form={form}>
-        <Form.Item label="Tên bộ phim" name={"nameFilm"}>
-          <Input placeholder="Nhập tên bộ phim" />
+        <Form.Item label="Tên phòng" name={"nameRoom"}>
+          <Input placeholder="Nhập tên phòng" />
         </Form.Item>
-        <Form.Item label="Thời lượng" name={"duration"}>
-          <Input placeholder="Nhập thời lượng" inputMode="numeric" />
+        <Form.Item label="Địa chỉ" name={"address"}>
+          <Input placeholder="Nhập địa chỉ" />
         </Form.Item>
-        <Form.Item label="Giá vé" name="balance">
-          <Input placeholder="Nhập giá vé" inputMode="numeric" />
+        <Form.Item label="Số hàng ghế" name={"row"}>
+          <Input placeholder="Nhập số lượng" inputMode="numeric" />
         </Form.Item>
-        <Form.Item label="Mô tả" tooltip="Nhập mô tả về bộ phim" name="content">
+        <Form.Item label="Số ghế mỗi hàng" name="column">
+          <Input placeholder="Nhập số lượng" inputMode="numeric" />
+        </Form.Item>
+        <Form.Item label="Mô tả" tooltip="Nhập mô tả" name="content">
           <Input.TextArea placeholder="Viết mô tả" rows={5} />
         </Form.Item>
       </Form>
@@ -56,4 +59,4 @@ function FilmModal({ data = {}, open, onCancel, onRefresh } = {}) {
   );
 }
 
-export default FilmModal;
+export default RoomModal;
