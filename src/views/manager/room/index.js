@@ -123,7 +123,7 @@ function ManagerRoom() {
           className="row justify-content-between"
           style={{ marginBottom: 8 }}
         >
-          <h3>Danh sách</h3>
+          <h3>Danh sách phòng chiếu</h3>
           <Button
             type="primary"
             onClick={onCreate}

@@ -55,8 +55,8 @@ function ManagerTimetable() {
       title: "Số vé",
       dataIndex: "room",
       render: (_, item) => {
-        const { row = 0, column = 0 } = item;
-        return row * column;
+        const { row = 0, column = 0 } = _;
+        return item.tickets?.length + "/" + row * column;
       },
     },
     {
@@ -174,7 +174,7 @@ function ManagerTimetable() {
           className="row justify-content-between"
           style={{ marginBottom: 8 }}
         >
-          <h3>Danh sách</h3>
+          <h3>Lịch chiếu</h3>
           <Button
             type="primary"
             onClick={onCreate}
@@ -183,23 +183,6 @@ function ManagerTimetable() {
             Thêm mới
           </Button>
         </div>
-        {/* <Row className="mb-3">
-          <Col span={12}>
-            <Input
-              placeholder="Tìm theo tên hoặc mã"
-              onChange={(e) => {
-                searchRef.current.textSearch = e.target?.value;
-                if (timeRef.current) {
-                  clearTimeout(timeRef.current);
-                }
-
-                timeRef.current = setTimeout(() => {
-                  fetchData();
-                }, 800);
-              }}
-            />
-          </Col>
-        </Row> */}
         <Table
           rowKey={(record, idx) => `${1}_${idx}`}
           rowClassName={(item) => {

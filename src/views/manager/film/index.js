@@ -127,7 +127,7 @@ function ManagerFilm() {
           className="row justify-content-between"
           style={{ marginBottom: 8 }}
         >
-          <h3>Danh sách</h3>
+          <h3>Danh sách phim</h3>
           <Button
             type="primary"
             onClick={onCreate}

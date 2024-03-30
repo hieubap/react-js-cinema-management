@@ -19,7 +19,7 @@ function Footer() {
           </div>
           <div className="col-lg-6">
             <div className="footer__nav">
-              <ul>
+              {/* <ul>
                 <li className="active">
                   <a href="./index.html">Homepage</a>
                 </li>
@@ -32,7 +32,7 @@ function Footer() {
                 <li>
                   <a href="#">Contacts</a>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
           <div className="col-lg-3">

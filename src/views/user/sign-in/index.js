@@ -63,7 +63,7 @@ function SignIn() {
                   </div>
                   <div className="input__item">
                     <input
-                      type="text"
+                      type="password"
                       placeholder="Password"
                       onChange={(e) => {
                         loginDataRef.current.password = e.target.value;
@@ -71,14 +71,15 @@ function SignIn() {
                     />
                     <span className="icon_lock" />
                   </div>
-                  <button
-                    className="site-btn"
-                    style={{ width: "100%" }}
-                    onClick={onLogin}
-                  >
-                    Login Now
-                  </button>
                 </form>
+
+                <button
+                  className="site-btn"
+                  style={{ width: "100%" }}
+                  onClick={onLogin}
+                >
+                  Login Now
+                </button>
                 {/* <a href="#" className="forget_pass">
                   Forgot Your Password?
                 </a> */}

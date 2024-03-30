@@ -17,6 +17,7 @@ import "./template/css/owl.carousel.min.css";
 import "./template/css/plyr.css";
 import "./template/css/slicknav.min.css";
 import "./template/css/style.css";
+import "./App.css";
 import { requestHeaders } from "./service/request";
 
 const App = () => {

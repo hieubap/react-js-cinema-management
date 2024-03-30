@@ -2864,7 +2864,7 @@ antd@*:
     scroll-into-view-if-needed "^3.1.0"
     throttle-debounce "^5.0.0"
 
-antd@^4.15.4:
+antd@^4.24.5:
   version "4.24.16"
   resolved "https://registry.yarnpkg.com/antd/-/antd-4.24.16.tgz#19206b6082e25a9900ba486655f9a55fe405d672"
   integrity sha512-zZrK4UYxHtU6tGOOf0uG/kBRx1kTvypfuSB3GqE/SBQxFhZ/TZ+yj7Z1qwI8vGfMtUUJdLeuoCAqGDa1zPsXnQ==
@@ -6646,6 +6646,11 @@ js-yaml@^4.1.0:
   dependencies:
     argparse "^2.0.1"
 
+jsbarcode@^3.8.0:
+  version "3.11.6"
+  resolved "https://registry.yarnpkg.com/jsbarcode/-/jsbarcode-3.11.6.tgz#96e8fbc3395476e162982a6064b98a09b5ea02c0"
+  integrity sha512-G5TKGyKY1zJo0ZQKFM1IIMfy0nF2rs92BLlCz+cU4/TazIc4ZH+X1GYeDRt7TKjrYqmPfTjwTBkU/QnQlsYiuA==
+
 jsdom@^16.6.0:
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-16.7.0.tgz#918ae71965424b197c819f8183a754e18977b710"
@@ -8995,6 +9000,14 @@ react-app-rewired@^2.2.1:
   integrity sha512-uFQWTErXeLDrMzOJHKp0h8P1z0LV9HzPGsJ6adOtGlA/B9WfT6Shh4j2tLTTGlXOfiVx6w6iWpp7SOC5pvk+gA==
   dependencies:
     semver "^5.6.0"
+
+react-barcode@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/react-barcode/-/react-barcode-1.5.1.tgz#e8b1fb872f3ad56f97beffa26140578c58c244b4"
+  integrity sha512-Au/L6XFp9Tc12dTFbRgTfv0vpxn/UE2xJ4nDbMBWFzwIu2sB3GMapTu9Rs4ETq3wj0AthBCpP7nB8MoaFl5V8Q==
+  dependencies:
+    jsbarcode "^3.8.0"
+    prop-types "^15.6.2"
 
 react-dev-utils@^12.0.1:
   version "12.0.1"

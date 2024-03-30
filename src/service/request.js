@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://14.225.205.222:8800";
+const API_URL = "http://localhost:8800";
+const API_FILE = "http://14.225.205.222:8800";
 
 export const requestHeaders = {
   authorization: "",
@@ -9,7 +10,7 @@ export const requestHeaders = {
 export const convertFileUrl = (url = "") => {
   if (["https://", "http://", "file://"].some((i) => url.startsWith(i)))
     return url;
-  return API_URL + "/asset?p=" + url;
+  return API_FILE + "/asset?p=" + url;
   // return "https://datahub.ivirse.com/api";
 };
 

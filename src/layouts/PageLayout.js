@@ -9,6 +9,8 @@ import {
 import PageHeader from "@/components/headers/PageHeader";
 import Footer from "@/components/Footer";
 import PageFilm from "../views/page/film";
+import PageTicket from "../views/page/ticket";
+import PageBookTicket from "../views/page/book-ticket";
 
 function PageLayout() {
   const routes = [
@@ -19,11 +21,23 @@ function PageLayout() {
       component: PageHome,
     },
     {
-        name: "Film",
-        path: "/page/film/:id",
-        //   icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
-        component: PageFilm,
-      },
+      name: "Film",
+      path: "/page/film/:id",
+      //   icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+      component: PageFilm,
+    },
+    {
+      name: "Book ticket",
+      path: "/page/book-ticket/:id",
+      //   icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+      component: PageBookTicket,
+    },
+    {
+      name: "Ticket",
+      path: "/page/ticket/:id",
+      //   icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+      component: PageTicket,
+    },
   ];
   return (
     <div>

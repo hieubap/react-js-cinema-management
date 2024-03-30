@@ -1,5 +1,6 @@
 // import Table from "@/components/Table";
 import { requestFetch } from "@/service/request";
+import { formatPrice } from "@/utils/index";
 import {
   DeleteOutlined,
   EditOutlined,
@@ -23,66 +24,60 @@ function ManagerTicket() {
     { title: "STT", width: 50, key: "stt", render: (_, __, idx) => idx + 1 },
     {
       title: "Đặt lúc",
-      width: 150,
+      width: 100,
       dataIndex: "createdAt",
       render: (i) => moment(i).format("HH:mm DD/MM/YYYY"),
     },
     {
       title: "Phòng",
       dataIndex: "room",
-      render: (i) => i.nameRoom,
+      render: (i) => i?.nameRoom,
     },
-    { title: "Lịch chiếu", dataIndex: "film", render: (i) => i.nameFilm },
-    { title: "Phim", dataIndex: "film", render: (i) => i.nameFilm },
+    {
+      title: "Lịch chiếu",
+      width: 100,
+      dataIndex: "timetable",
+      render: (i) => moment(i.startAt).format("HH:mm DD/MM/YYYY"),
+    },
+    {
+      title: "Phim",
+      width: 180,
+      dataIndex: "film",
+      render: (i) => i?.nameFilm,
+    },
+    {
+      title: "Họ tên",
+      dataIndex: "fullname",
+    },
+    {
+      title: "Số điện thoại",
+      dataIndex: "phone",
+    },
+    {
+      title: "Địa chỉ",
+      dataIndex: "address",
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+    },
+    {
+      title: "Phòng",
+      dataIndex: "room",
+      render: (i) => i?.nameRoom,
+    },
     {
       title: "Số ghế",
-      dataIndex: "room",
+      dataIndex: "positions",
       render: (_, item) => {
-        const { row = 0, column = 0 } = item;
-        return row * column;
+        return _?.length;
       },
     },
     {
       title: "Tổng tiền",
-      dataIndex: "content",
-    },
-    {
-      title: "",
-      width: 80,
-      render: (_, row) => (
-        <div className="group-btn-action">
-          <Tooltip title="Sửa">
-            <EditOutlined
-              onClick={() => {
-                // setState({
-                //   editData: row,
-                //   visible: true,
-                // });
-              }}
-              style={{ cursor: "pointer", fontSize: 20, color: "blue" }}
-            />
-          </Tooltip>
-          <Popconfirm
-            title="Bạn chắc chứ ?"
-            onConfirm={() => {}}
-            cancelText="Hủy lịch"
-            okText="Xóa"
-            okButtonProps={{
-              color: "secondary",
-              danger: true,
-            }}
-          >
-            <DeleteOutlined
-              style={{
-                cursor: "pointer",
-                fontSize: 20,
-                marginLeft: 10,
-                color: "red",
-              }}
-            />
-          </Popconfirm>
-        </div>
-      ),
+      render: (_, item) => {
+        return formatPrice(item?.positions?.length * item.film?.balance) || 0;
+      },
     },
   ];
 
@@ -150,14 +145,7 @@ function ManagerTicket() {
           className="row justify-content-between"
           style={{ marginBottom: 8 }}
         >
-          <h3>Danh sách</h3>
-          <Button
-            type="primary"
-            onClick={onCreate}
-            icon={<PlusCircleOutlined width={30} height={30} size={30} />}
-          >
-            Thêm mới
-          </Button>
+          <h3>Danh sách các vé đã đặt</h3>
         </div>
         {/* <Row className="mb-3">
           <Col span={12}>
@@ -178,13 +166,13 @@ function ManagerTicket() {
         </Row> */}
         <Table
           rowKey={(record, idx) => `${1}_${idx}`}
-          rowClassName={(item) => {
-            return item.status == 1
-              ? "film-coming"
-              : item.status == 3
-              ? "film-finish"
-              : "film-showing";
-          }}
+          // rowClassName={(item) => {
+          //   return item.status == 1
+          //     ? "film-coming"
+          //     : item.status == 3
+          //     ? "film-finish"
+          //     : "film-showing";
+          // }}
           columns={columns}
           dataSource={customData}
           pagination={{ defaultPageSize: 100 }}

@@ -31,7 +31,7 @@ function FilmItem({
           <li>Movie</li>
         </ul> */}
         <h5>
-          <Link to={"/page/film/" + item._id}>{filmName}</Link>
+          <Link to={"/page/film/" + item._id}>{item.nameFilm}</Link>
         </h5>
       </div>
     </div>
