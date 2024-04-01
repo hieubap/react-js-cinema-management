@@ -7,7 +7,7 @@ function SignIn() {
   const loginDataRef = React.useRef({});
   const history = useHistory();
   const onLogin = () => {
-    requestFetch("post", "/user/sign-in", {
+    requestFetch("post", "/account/sign-in", {
       username: loginDataRef.current.username,
       password: loginDataRef.current.password,
     }).then((res) => {
