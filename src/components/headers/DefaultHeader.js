@@ -8,7 +8,8 @@ function PageHeader() {
           <div className="col-lg-2">
             <div className="header__logo">
               <a href="./index.html">
-                <img src="/img/logo.png" alt="" />
+                {/* <img src="/img/logo.png" alt="" /> */}
+                PHD Star
               </a>
             </div>
           </div>

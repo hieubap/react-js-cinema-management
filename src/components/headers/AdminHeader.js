@@ -3,7 +3,6 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function AdminHeader() {
-  
   const history = useHistory();
   console.log(history, "history");
   return (
@@ -13,7 +12,12 @@ function AdminHeader() {
           <div className="col-lg-2">
             <div className="header__logo">
               <Link to="/home">
-                <img src="/img/logo.png" alt="" />
+                <div
+                  style={{ color: "white", fontWeight: "900", fontSize: 20 }}
+                >
+                  PHD <span style={{ color: "#e63333" }}>Star</span>
+                </div>
+                {/* <img src="/img/logo.png" alt="" /> */}
               </Link>
             </div>
           </div>

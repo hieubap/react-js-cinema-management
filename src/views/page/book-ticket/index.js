@@ -6,7 +6,7 @@ import {
   useHistory,
   useParams,
 } from "react-router-dom/cjs/react-router-dom.min";
-import { Input, Card, Button, message } from "antd";
+import { Input, Card, Button, message, Select } from "antd";
 import { formatPrice } from "@/utils/index";
 
 function PageBookTicket() {
@@ -239,6 +239,25 @@ function PageBookTicket() {
               onChange={(e) => {
                 dataRef.current.email = e.target.value;
               }}
+            />
+            <label>Phương thức thanh toán</label>
+            <Select
+              placeholder="Chọn phương thức"
+              options={[
+                {
+                  label: "Tiền mặt",
+                  value: 1,
+                },
+                {
+                  label: "Chuyển khoản",
+                  value: 2,
+                },
+              ]}
+              defaultValue={1}
+              onChange={(e) => {
+                dataRef.current.methodPay = e;
+              }}
+              className="w-100"
             />
 
             <div className="row" style={{ marginTop: 20 }}>

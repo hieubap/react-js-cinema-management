@@ -74,6 +74,12 @@ function ManagerTicket() {
       },
     },
     {
+      title: "Hình thức thanh toán",
+      width: 100,
+      dataIndex: "methodPay",
+      render: (i) => i == 2 ? "Chuyển khoản" : "Tiền mặt",
+    },
+    {
       title: "Tổng tiền",
       render: (_, item) => {
         return formatPrice(item?.positions?.length * item.film?.balance) || 0;
